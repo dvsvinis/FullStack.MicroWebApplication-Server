@@ -1,11 +1,14 @@
 package zipcode.group3.showboat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLastInitializer", "handler"})
 public class Video {
 
     @Id
@@ -15,6 +18,8 @@ public class Video {
     private String filePath;
     private String dateCreated;
     private String description;
+
+    public Video() { }
 
     public Long getId() {
         return id;
