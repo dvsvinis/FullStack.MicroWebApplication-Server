@@ -9,7 +9,7 @@ import zipcode.group3.showboat.repository.VideoRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/video")
+//@RequestMapping("/video")
 public class VideoController {
 
     @Autowired
@@ -18,7 +18,7 @@ public class VideoController {
     /**
      * returns a list of videos
      */
-    @GetMapping
+    @GetMapping("/video")
     public List<Video> list() {
         return videoRepository.findAll();
     }
@@ -28,7 +28,7 @@ public class VideoController {
      * @param id - the primary key of the video as a path
      * @return a video matching that id
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "video/{id}", method = RequestMethod.GET)
     public Video get(@PathVariable Long id) {
         return videoRepository.getOne(id);
     }
@@ -37,7 +37,7 @@ public class VideoController {
      * Creates a new video from a json object
      * @param video - a video created from a json object in the Body of the request
      */
-    @PutMapping
+    @PutMapping("video")
     @ResponseStatus(HttpStatus.OK)
     public void create(@RequestBody Video video) {
         videoRepository.save(video);
