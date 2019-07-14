@@ -14,16 +14,20 @@ import java.util.List;
 //@RequestMapping("/user")
 public class UserController {
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     /**
      * returns a list of Users
      * @return
      */
     @GetMapping("/users")
-    public List<User> getUserList() {
-        return userRepository.findAll();
+    public List<User> getUsers() {
+        return (List<User>) userRepository.findAll();
     }
 
     /**
