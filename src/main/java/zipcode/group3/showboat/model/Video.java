@@ -21,6 +21,13 @@ public class Video {
 
     public Video() { }
 
+    public Video(String name, String filePath, String dateCreated, String description) {
+        this.name = name;
+        this.filePath = filePath;
+        this.dateCreated = dateCreated;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
@@ -60,4 +67,17 @@ public class Video {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", dateCreated='" + dateCreated + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
 }
+

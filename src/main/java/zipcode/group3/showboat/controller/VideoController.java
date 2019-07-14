@@ -9,18 +9,23 @@ import zipcode.group3.showboat.repository.VideoRepository;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 //@RequestMapping("/video")
 public class VideoController {
 
-    @Autowired
     private VideoRepository videoRepository;
+
+    @Autowired
+    public VideoController(VideoRepository videoRepository) {
+        this.videoRepository = videoRepository;
+    }
 
     /**
      * returns a list of videos
      */
     @GetMapping("/video")
-    public List<Video> list() {
-        return videoRepository.findAll();
+    public List<Video> videoList() {
+        return (List<Video>) videoRepository.findAll();
     }
 
     /**
@@ -29,7 +34,7 @@ public class VideoController {
      * @return a video matching that id
      */
     @RequestMapping(value = "video/{id}", method = RequestMethod.GET)
-    public Video get(@PathVariable Long id) {
+    public Video getVideo(@PathVariable Long id) {
         return videoRepository.getOne(id);
     }
 
@@ -37,9 +42,9 @@ public class VideoController {
      * Creates a new video from a json object
      * @param video - a video created from a json object in the Body of the request
      */
-    @PutMapping("video")
+    @PostMapping("/video")
     @ResponseStatus(HttpStatus.OK)
-    public void create(@RequestBody Video video) {
+    public void addVideo(@RequestBody Video video) {
         videoRepository.save(video);
     }
 }
