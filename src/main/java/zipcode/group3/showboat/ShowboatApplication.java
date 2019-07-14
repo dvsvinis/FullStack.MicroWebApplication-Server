@@ -21,13 +21,13 @@ public class ShowboatApplication {
 	CommandLineRunner init(UserRepository userRepository, VideoRepository videoRepository) {
 		return args -> {
 			Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
-				User user = new User(name, name.toLowerCase() + "@domain.com");
-				userRepository.save(user);
+                        User user = new User(name, name.toLowerCase() + "@domain.com");
+                        userRepository.save(user);
+                    });
 
 			Video video = new Video("DogPlay", "https://www.youtube.com/user/PottyTrainingAPuppy?v=IPQAazegMQg",
 					"March 10, 2019", "Dogs playing");
 				videoRepository.save(video);
-			});
 
 			userRepository.findAll().forEach(System.out::println);
 		};
