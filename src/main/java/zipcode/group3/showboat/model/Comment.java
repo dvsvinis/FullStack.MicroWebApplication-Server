@@ -1,9 +1,7 @@
 package zipcode.group3.showboat.model;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javafx.scene.input.DataFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +15,24 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long fkVideoId;
+    private int videoid;
     private String comment;
+
+    public Comment(int fkVideoId, String comment) {
+        this.videoid = fkVideoId;
+        this.comment = comment;
+    }
+
+    public Comment() {
+
+    }
 
 //    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "MM-dd-yyyy")
 //    private DataFormat dateCreated;
-//
+
+
+
+
     public Long getId() {
         return id;
     }
@@ -31,12 +41,12 @@ public class Comment {
         this.id = id;
     }
 
-    public Long getFkVideoId() {
-        return fkVideoId;
+    public int getFkVideoId() {
+        return videoid;
     }
 
-    public void setFkVideoId(Long fkVideoId) {
-        this.fkVideoId = fkVideoId;
+    public void setFkVideoId(int fkVideoId) {
+        this.videoid = fkVideoId;
     }
 
     public String getComment() {
@@ -54,5 +64,15 @@ public class Comment {
 //    public void setDateCreated(DataFormat dateCreated) {
 //        this.dateCreated = dateCreated;
 //    }
+
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", fkVideoId=" + videoid +
+                ", comment='" + comment + '\'' +
+                '}';
+    }
 }
 
