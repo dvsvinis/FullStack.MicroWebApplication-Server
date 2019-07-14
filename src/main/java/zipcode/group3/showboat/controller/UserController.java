@@ -39,7 +39,7 @@ public class UserController {
      * Creates a new video from a json object
      * @param user - a user created from a json object in the Body of the request
      */
-    @PutMapping("user")
+    @PostMapping("user")
     @ResponseStatus(HttpStatus.OK)
     public void create(@RequestBody User user) {
         userRepository.save(user);

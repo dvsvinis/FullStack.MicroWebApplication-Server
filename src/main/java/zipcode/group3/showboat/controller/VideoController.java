@@ -37,7 +37,7 @@ public class VideoController {
      * Creates a new video from a json object
      * @param video - a video created from a json object in the Body of the request
      */
-    @PutMapping("video")
+    @PostMapping("video")
     @ResponseStatus(HttpStatus.OK)
     public void create(@RequestBody Video video) {
         videoRepository.save(video);
