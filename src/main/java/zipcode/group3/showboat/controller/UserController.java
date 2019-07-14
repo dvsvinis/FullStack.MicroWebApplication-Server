@@ -10,19 +10,24 @@ import zipcode.group3.showboat.repository.UserRepository;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 //@RequestMapping("/user")
 public class UserController {
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     /**
      * returns a list of Users
      * @return
      */
     @GetMapping("/users")
-    public List<User> list() {
-        return userRepository.findAll();
+    public List<User> getUsers() {
+        return (List<User>) userRepository.findAll();
     }
 
     /**
@@ -30,8 +35,8 @@ public class UserController {
      * @param id - the primary key of the user as a path
      * @return a user matching that id
      */
-    @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
-    public User get(@PathVariable Long id) {
+    @RequestMapping(value = "users/{id}", method = RequestMethod.GET)
+    public User getUser(@PathVariable Long id) {
         return userRepository.getOne(id);
     }
 
@@ -39,9 +44,10 @@ public class UserController {
      * Creates a new video from a json object
      * @param user - a user created from a json object in the Body of the request
      */
-    @PostMapping("user")
+
+    @PostMapping("/users")
     @ResponseStatus(HttpStatus.OK)
-    public void create(@RequestBody User user) {
+    public void addUser(@RequestBody User user) {
         userRepository.save(user);
     }
 }
