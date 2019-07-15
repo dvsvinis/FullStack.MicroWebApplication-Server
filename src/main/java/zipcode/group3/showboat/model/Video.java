@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLastInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLastInitializer", "handler"})
 public class Video {
 
     @Id
