@@ -8,23 +8,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-//@JsonIgnoreProperties({"hibernateLastInitializer", "handler"})
 public class Video {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String filePath;
-    private String dateCreated;
+    private String filepath;
+    private String datecreated;
     private String description;
 
     public Video() { }
 
-    public Video(String name, String filePath, String dateCreated, String description) {
+    public Video(String name, String filepath, String datecreated, String description) {
         this.name = name;
-        this.filePath = filePath;
-        this.dateCreated = dateCreated;
+        this.filepath = filepath;
+        this.datecreated = datecreated;
         this.description = description;
     }
 
@@ -44,20 +43,20 @@ public class Video {
         this.name = name;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getFilepath() {
+        return filepath;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 
-    public String getDateCreated() {
-        return dateCreated;
+    public String getDatecreated() {
+        return datecreated;
     }
 
-    public void setDateCreated(String dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setDatecreated(String datecreated) {
+        this.datecreated = datecreated;
     }
 
     public String getDescription() {
@@ -73,11 +72,10 @@ public class Video {
         return "Video{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", filePath='" + filePath + '\'' +
-                ", dateCreated='" + dateCreated + '\'' +
+                ", filepath='" + filepath + '\'' +
+                ", datecreated='" + datecreated + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
-
 }
 
