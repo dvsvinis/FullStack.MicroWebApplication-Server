@@ -1,11 +1,10 @@
 package zipcode.group3.showboat.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Video {
@@ -17,6 +16,7 @@ public class Video {
     private String filepath;
     private String datecreated;
     private String description;
+
 
     public Video() { }
 
