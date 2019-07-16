@@ -21,6 +21,10 @@ public class Comment {
     public Comment() {
     }
 
+    public Comment(String comment) {
+        this.comment = comment;
+    }
+
     public Comment(int videoid, String comment) {
         this.videoid = videoid;
         this.comment = comment;

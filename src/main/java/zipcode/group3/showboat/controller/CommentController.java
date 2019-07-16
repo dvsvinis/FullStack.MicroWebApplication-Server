@@ -6,13 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import zipcode.group3.showboat.model.Comment;
 import zipcode.group3.showboat.repository.CommentRepository;
 
-
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class CommentController {
-
 
     private CommentRepository commentRepository;
 
@@ -24,14 +22,6 @@ public class CommentController {
     @GetMapping("/comments")
     public List<Comment> commentslist() {
         return (List<Comment>) commentRepository.findAll();
-
-
-    }
-
-    @PostMapping("/comments")
-    @ResponseStatus(HttpStatus.OK)
-    public void addComment(@RequestBody Comment comments) {
-        commentRepository.save(comments);
     }
 
     @RequestMapping(value = "comments/{id}", method = RequestMethod.GET)
@@ -39,10 +29,13 @@ public class CommentController {
         return commentRepository.getOne(id);
     }
 
-    @GetMapping("/{id}")
-    public Comment get(@PathVariable("id")long id) {
-        return commentRepository.getOne(id);
+    @PostMapping("/comments")
+    @ResponseStatus(HttpStatus.OK)
+    public void addComment(@RequestBody Comment comment) {
+        commentRepository.save(comment);
     }
+
+
 }
 
 

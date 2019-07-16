@@ -17,7 +17,7 @@
         <div [hidden]="!filepath.pristine" class="alert alert-danger">Filepath is required</div>
 
       <label for="dateCreated">dateCreated</label>
-      <input type="text" [(ngModel)]="video.dateCreated"
+      <input type="text" [(ngModel)]="video.datecreated"
              class="form-control" id="dateCreated" name="dateCreated" placeholder="Enter the date"
              required #dateCreated="ngModel">
       <div [hidden]="!dateCreated.pristine" class="alert alert-danger">dateCreated is required</div>
