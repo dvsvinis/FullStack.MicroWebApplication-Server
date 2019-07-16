@@ -2,6 +2,6 @@ export class Video {
   id: number;
   name: string;
   filepath: string;
-  dateCreated: string;
+  datecreated: string;
   description: string
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Comment } from '../../model/comment';
-import {CommentService} from "../../services/comment-services.service";
+import {CommentService} from "../../services/comment-service.service";
 
 @Component({
   selector: 'app-comment-form',

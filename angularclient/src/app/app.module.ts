@@ -12,7 +12,7 @@ import { VideoFormComponent } from './components/video-form/video-form.component
 import { VideoService } from './services/video-service.service';
 import { commentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
-import { CommentService } from './services/comment-services.service';
+import { CommentService } from './services/comment-service.service';
 
 @NgModule({
   declarations: [
