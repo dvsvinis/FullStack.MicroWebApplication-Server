@@ -21,29 +21,15 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    /**
-     * returns a list of Users
-     * @return
-     */
     @GetMapping("/users")
     public List<User> getUsers() {
         return (List<User>) userRepository.findAll();
     }
 
-    /**
-     * return a specific video
-     * @param id - the primary key of the user as a path
-     * @return a user matching that id
-     */
     @RequestMapping(value = "users/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable Long id) {
         return userRepository.getOne(id);
     }
-
-    /**
-     * Creates a new video from a json object
-     * @param user - a user created from a json object in the Body of the request
-     */
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.OK)
