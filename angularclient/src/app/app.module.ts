@@ -13,6 +13,7 @@ import { VideoService } from './services/video-service.service';
 import { commentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { CommentService } from './services/comment-services.service';
+import { AngComponent } from './ang/ang.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CommentService } from './services/comment-services.service';
     VideoListComponent,
     VideoFormComponent,
     commentListComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    AngComponent
   ],
   imports: [
     BrowserModule,
