@@ -3,16 +3,12 @@ package zipcode.group3.showboat.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import org.hibernate.annotations.Type;
-
-<<<<<<< HEAD
 import javax.persistence.*;
-=======
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
->>>>>>> f528be7214621b40f1aa816542ba3542ab9265a8
 
 @Entity
 public class Video {

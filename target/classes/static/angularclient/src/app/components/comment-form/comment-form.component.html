@@ -1,0 +1,23 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #commentForm="ngForm">
+
+      <div class="form-group">
+        <label for="videoid">Video Id</label>
+        <input type="text" [(ngModel)]="comment.videoid"
+               class="form-control" id="videoid" name="videoid" placeholder="Enter Video Id"
+               required #videoid="ngModel">
+      </div>
+      <div [hidden]="!videoid.pristine" class="alert alert-danger">Video Id is required</div>
+
+      <label for="comment">Comment</label>
+      <input type="text" [(ngModel)]="comment.comment"
+             class="form-control" id="comment" name="comment" placeholder="Enter your Comment"
+             required #videoid="ngModel">
+      <div [hidden]="!videoid.pristine" class="alert alert-danger">Comment is required</div>
+
+      <button type="submit" [disabled]="!commentForm.form.valid" class="btn btn-info">Submit</button>
+
+    </form>
+  </div>
+</div>
