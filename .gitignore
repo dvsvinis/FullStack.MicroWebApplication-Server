@@ -9,7 +9,7 @@
 .idea/*
 .target/*
 .DS_Store/*
-node_modules/*
+**/node_modules/*
 application.yml/*
 *.yml
 
