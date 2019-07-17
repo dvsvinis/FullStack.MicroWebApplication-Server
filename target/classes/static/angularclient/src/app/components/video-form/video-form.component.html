@@ -1,0 +1,35 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #videoForm="ngForm">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="video.name"
+               class="form-control" id="name" name="name" placeholder="Enter your name"
+               required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
+
+        <label for="filepath">Filepath</label>
+        <input type="text" [(ngModel)]="video.filepath"
+               class="form-control" id="filepath" name="filepath" placeholder="Enter the path for your file"
+               required #filepath="ngModel">
+        <div [hidden]="!filepath.pristine" class="alert alert-danger">Filepath is required</div>
+
+      <label for="dateCreated">dateCreated</label>
+      <input type="text" [(ngModel)]="video.datecreated"
+             class="form-control" id="dateCreated" name="dateCreated" placeholder="Enter the date"
+             required #dateCreated="ngModel">
+      <div [hidden]="!dateCreated.pristine" class="alert alert-danger">dateCreated is required</div>
+
+      <label for="description">description</label>
+      <input type="text" [(ngModel)]="video.description"
+             class="form-control" id="description" name="description" placeholder="Enter the description"
+             required #description="ngModel">
+      <div [hidden]="!description.pristine" class="alert alert-danger">description is required</div>
+
+      <button type="submit" [disabled]="!videoForm.form.valid" class="btn btn-info">Submit</button>
+
+    </form>
+  </div>
+</div>
