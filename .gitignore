@@ -10,6 +10,7 @@
 .target/*
 .DS_Store/*
 node_modules/*
+target/*
 *.yml
 resources/static/angularclient/node_modules/*
 
