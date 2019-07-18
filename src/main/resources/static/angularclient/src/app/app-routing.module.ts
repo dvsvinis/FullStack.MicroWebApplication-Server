@@ -10,21 +10,23 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGoodService } from './services/auth-good.service';
-import { AddUserComponent } from './components//add-user/add-user.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 const routes: Routes = [
-  { path: 'users', component: UserListComponent },
+
+  { path: '', component: UserComponent,canActivate:[AuthGoodService] },
   { path: 'adduser', component: UserFormComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'users', component: UserListComponent },
+  { path: 'logout', component: LogoutComponent,canActivate:[AuthGoodService] },
+  { path: 'adduser', component: AddUserComponent,canActivate:[AuthGoodService]},
   { path: 'videos', component: VideoListComponent },
   { path: 'addvideo', component: VideoFormComponent },
   { path: 'comments', component: commentListComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
-  { path: '', component: UserComponent,canActivate:[AuthGoodService] },
-  { path: 'adduser', component: AddUserComponent,canActivate:[AuthGoodService]},
   { path: 'addcomments', component: CommentFormComponent,canActivate:[AuthGoodService]},
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent,canActivate:[AuthGoodService] },
+
 ];
 
 @NgModule({
