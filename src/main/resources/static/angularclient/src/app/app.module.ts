@@ -16,6 +16,9 @@ import { CommentService } from './services/comment-service.service';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HeaderComponent } from './components/header/header.component';
+import { UserComponent } from './components/user/user.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { HeaderComponent } from './components/header/header.component';
     CommentFormComponent,
     LoginComponent,
     LogoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserComponent,
+    AddUserComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,26 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { UserFormComponent } from './components/user-form/user-form.component';
+// import { UserFormComponent } from './components/user-form/user-form.component';
 import { VideoListComponent } from './components/video-list/video-list.component';
 import { VideoFormComponent } from './components/video-form/video-form.component';
 import { commentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGoodService } from './services/auth-good.service';
+import { AddUserComponent } from './components//add-user/add-user.component';
 
 const routes: Routes = [
   { path: 'users', component: UserListComponent },
-  { path: 'adduser', component: UserFormComponent },
+  // { path: 'adduser', component: UserFormComponent },
   { path: 'videos', component: VideoListComponent },
   { path: 'addvideo', component: VideoFormComponent },
   { path: 'comments', component: commentListComponent },
-  { path: 'addcomments', component: CommentFormComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  // { path: '', component: UserComponent,canActivate:[AuthGoodService] },
-  // { path: 'adduser', component: AddUserComponent,canActivate:[AuthGoodService]},
+  { path: '', component: UserComponent,canActivate:[AuthGoodService] },
+  { path: 'adduser', component: AddUserComponent,canActivate:[AuthGoodService]},
+  { path: 'addcomments', component: CommentFormComponent,canActivate:[AuthGoodService]},
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent,canActivate:[AuthGoodService] },
 ];
