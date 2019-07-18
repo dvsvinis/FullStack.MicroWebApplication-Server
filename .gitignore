@@ -10,8 +10,9 @@
 .target/*
 .DS_Store/*
 node_modules/*
+target/*
 *.yml
-
+src/main/resources/static/angularclient/node_modules/*
 
 # Generated files
 .idea/**/contentModel.xml
