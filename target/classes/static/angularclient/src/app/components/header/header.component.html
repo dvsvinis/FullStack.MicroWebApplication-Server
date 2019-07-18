@@ -9,6 +9,10 @@
       <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
 
+      <li class="list-inline-item"><a routerLink="/videos" class="btn btn-info">List Videos</a></li>
+      <li class="list-inline-item"><a routerLink="/comments" class="btn btn-info">List Comments</a></li>
+      <li class="list-inline-item"><a routerLink="/adduser" class="btn btn-info">Add User</a></li>
+
     </ul>
   </nav>
 </header>
