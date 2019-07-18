@@ -13,6 +13,9 @@ import { VideoService } from './services/video-service.service';
 import { commentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { CommentService } from './services/comment-service.service';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { CommentService } from './services/comment-service.service';
     VideoListComponent,
     VideoFormComponent,
     commentListComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    LoginComponent,
+    LogoutComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
