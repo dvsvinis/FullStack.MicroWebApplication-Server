@@ -1,14 +1,8 @@
 package zipcode.group3.showboat.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import org.hibernate.annotations.Type;
-import javax.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Video {
@@ -20,15 +14,17 @@ public class Video {
     private String filepath;
     private String datecreated;
     private String description;
-
+    @Transient
+    private MultipartFile file;
 
     public Video() { }
 
-    public Video(String name, String filepath, String datecreated, String description) {
+    public Video(String name, String filepath, String datecreated, String description, MultipartFile file) {
         this.name = name;
         this.filepath = filepath;
         this.datecreated = datecreated;
         this.description = description;
+        this.file = file;
     }
 
     public Long getId() {
@@ -69,6 +65,14 @@ public class Video {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     @Override
