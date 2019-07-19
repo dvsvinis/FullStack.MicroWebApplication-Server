@@ -3,6 +3,7 @@ package zipcode.group3.showboat.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import zipcode.group3.showboat.model.Video;
 import zipcode.group3.showboat.repository.VideoRepository;
 
@@ -40,11 +41,15 @@ public class VideoController {
 
     /**
      * Creates a new video from a json object
-     * @param video - a video created from a json object in the Body of the request
+     * @param file - a video created from a json object in the Body of the request
      */
     @PostMapping("/video")
     @ResponseStatus(HttpStatus.OK)
-    public void addVideo(@RequestBody Video video) {
+    public void addVideo(@RequestParam("file") MultipartFile file,@RequestParam("name") String name,
+                         @RequestParam("filepath") String filepath, @RequestParam("datecreated") String datecreated,
+                         @RequestParam("description") String description) {
+        Video video = new Video(name,filepath,datecreated,description,file);
+        String fileName = file.getOriginalFilename();
         videoRepository.save(video);
     }
 }
