@@ -12,6 +12,8 @@
 node_modules/*
 target/*
 *.yml
+*.mp4
+*.jpg
 src/main/resources/static/angularclient/node_modules/*
 
 # Generated files

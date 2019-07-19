@@ -2,49 +2,59 @@ package zipcode.group3.showboat.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zipcode.group3.showboat.model.Video;
-import zipcode.group3.showboat.repository.VideoRepository;
+import zipcode.group3.showboat.service.VideoService;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-//@RequestMapping("/video")
+@RequestMapping("/video")
 public class VideoController {
 
-    private VideoRepository videoRepository;
+    private VideoService service;
 
     @Autowired
-    public VideoController(VideoRepository videoRepository) {
-        this.videoRepository = videoRepository;
+    public VideoController(VideoService service) {
+        this.service = service;
     }
 
     /**
      * returns a list of videos
      */
-    @GetMapping("/video")
-    public List<Video> videoList() {
-        return (List<Video>) videoRepository.findAll();
+    @GetMapping
+    public ResponseEntity<List<Video>> index() {
+        return new ResponseEntity<>(service.readAll(), HttpStatus.OK);
     }
 
     /**
-     * return a specific video
-     * @param id - the primary key of the video as a path
-     * @return a video matching that id
+     * Gets the information of a single video by id
+     * @param id - the Id of the video determined by the path variable
+     * @return A response entity containing the Video as a Json
      */
-    @RequestMapping(value = "video/{id}", method = RequestMethod.GET)
-    public Video getVideo(@PathVariable Long id) {
-        return videoRepository.getOne(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Video> get(@PathVariable Long id) {
+        return new ResponseEntity<>(service.read(id), HttpStatus.OK);
     }
 
     /**
      * Creates a new video from a json object
      * @param video - a video created from a json object in the Body of the request
      */
-    @PostMapping("/video")
-    @ResponseStatus(HttpStatus.OK)
-    public void addVideo(@RequestBody Video video) {
-        videoRepository.save(video);
+    @PostMapping
+    public ResponseEntity<Video> post(@RequestBody Video video) {
+        return new ResponseEntity<>(service.create(video), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Video> post(@PathVariable Long id, @RequestBody Video video) {
+        return new ResponseEntity<>(service.update(id, video), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }
