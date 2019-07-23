@@ -15,7 +15,7 @@ public class Video {
     private String datecreated;
     private String description;
     @Transient
-    private MultipartFile file;
+    private transient MultipartFile file;
 
     public Video() { }
 
@@ -86,4 +86,3 @@ public class Video {
                 '}';
     }
 }
-

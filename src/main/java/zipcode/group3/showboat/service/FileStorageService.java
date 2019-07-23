@@ -37,6 +37,26 @@ public class FileStorageService {
         return filename;
     }
 
+    public String storeWithFileName(MultipartFile file, String filename) {
+        String fileextension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+        String fileNameWithExtension = filename + "."+fileextension;
+        String test = StringUtils.cleanPath(file.getOriginalFilename());
+        Path location = rootLocation.resolve(fileNameWithExtension);
+
+        try {
+            InputStream inputSteam = file.getInputStream();
+            Files.copy(inputSteam, location, StandardCopyOption.REPLACE_EXISTING);
+        }
+        catch (IOException e) {
+            System.out.println("Failed to store File");
+        }
+        finally {
+            System.out.println(location.toString());
+        }
+
+        return filename;
+    }
+
     public Resource load(String filename) {
         try {
             Path filepath = rootLocation.resolve(filename);
@@ -56,3 +76,4 @@ public class FileStorageService {
     }
 
 }
+

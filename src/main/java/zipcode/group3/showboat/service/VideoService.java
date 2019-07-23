@@ -11,14 +11,17 @@ import java.util.List;
 public class VideoService {
 
     private VideoRepository repository;
-
+    private FileStorageService fileStorageService;
     @Autowired
-    public VideoService(VideoRepository repository) {
+    public VideoService(VideoRepository repository, FileStorageService fileStorageService) {
         this.repository = repository;
+        this.fileStorageService = fileStorageService;
     }
 
     public Video create(Video video) {
-        return repository.save(video);
+        video = repository.save(video);
+        fileStorageService.storeWithFileName(video.getFile(),video.getId().toString());
+        return video;
     }
 
     public Video read(Long id) {
