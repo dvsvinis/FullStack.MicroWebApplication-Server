@@ -8,7 +8,7 @@
 # User-specific stuff
 .idea/*
 .target/*
-.DS_Store/*
+.DS_Store
 node_modules/*
 target/*
 *.yml
