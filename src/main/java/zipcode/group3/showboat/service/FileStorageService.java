@@ -38,7 +38,10 @@ public class FileStorageService {
     }
 
     public String storeWithFileName(MultipartFile file, String filename) {
-        Path location = rootLocation.resolve(filename);
+        String fileextension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+        String fileNameWithExtension = filename + "."+fileextension;
+        String test = StringUtils.cleanPath(file.getOriginalFilename());
+        Path location = rootLocation.resolve(fileNameWithExtension);
 
         try {
             InputStream inputSteam = file.getInputStream();
@@ -73,3 +76,4 @@ public class FileStorageService {
     }
 
 }
+

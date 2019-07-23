@@ -42,14 +42,16 @@ public class VideoController {
 
     /**
      * Creates a new video from a json object
-     * @param video - a video created from a json object in the Body of the request
      */
     @PostMapping
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Video> post(@RequestParam("file") MultipartFile file,@RequestParam("name") String name,
                                       @RequestParam("filepath") String filepath, @RequestParam("datecreated") String datecreated,
                                       @RequestParam("description") String description) {
         Video video = new Video(name,filepath,datecreated,description,file);
-        return new ResponseEntity<>(service.create(video), HttpStatus.OK);
+        service.create(video);
+        video.setFile(null);
+        return new ResponseEntity<>(video, HttpStatus.OK);
     }
     @PutMapping("/{id}")
     public ResponseEntity<Video> post(@PathVariable Long id, @RequestBody Video video) {
