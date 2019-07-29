@@ -45,13 +45,12 @@ public class VideoController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Video> post(@RequestParam("file") MultipartFile file,@RequestParam("name") String name,
-                                      @RequestParam("filepath") String filepath, @RequestParam("datecreated") String datecreated,
-                                      @RequestParam("description") String description) {
-        Video video = new Video(name,filepath,datecreated,description,file);
-        service.create(video);
-        video.setFile(null);
-        return new ResponseEntity<>(video, HttpStatus.OK);
+    public ResponseEntity<Video> post(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("title") String title,
+            @RequestParam("description") String description) {
+
+        return new ResponseEntity<>(service.create(title, description, file), HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
     public ResponseEntity<Video> post(@PathVariable Long id, @RequestBody Video video) {

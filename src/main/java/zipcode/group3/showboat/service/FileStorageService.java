@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -18,6 +20,17 @@ import java.nio.file.StandardCopyOption;
 public class FileStorageService {
 
     private Path rootLocation = Paths.get("uploads");
+
+    public String storeWithS3(MultipartFile multipartFile, Long id) throws IOException {
+        File file = new File("video" + id + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+        file.createNewFile();
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.write(multipartFile.getBytes());
+        fos.close();
+
+        return S3StorageService.upload(file);
+
+    }
 
     public String store(MultipartFile file) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
