@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/video")
+@RequestMapping("/api/video")
 public class VideoController {
 
     private VideoService service;

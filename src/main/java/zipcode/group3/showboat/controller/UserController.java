@@ -1,44 +1,49 @@
 package zipcode.group3.showboat.controller;
 
 
+
+import zipcode.group3.showboat.jwt.JwtTokenProvider;
+import zipcode.group3.showboat.model.Role;
+import zipcode.group3.showboat.model.User;
+import zipcode.group3.showboat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-import zipcode.group3.showboat.model.User;
-import zipcode.group3.showboat.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.security.Principal;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-//@RequestMapping("/user")
 public class UserController {
 
-    private UserRepository userRepository;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    private UserService userService;
+
+    @PostMapping("/api/user/registration")
+    public ResponseEntity<?> register(@RequestBody User user){
+        if(userService.findByUsername(user.getUsername()) != null){    //should be unique
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        user.setRole(Role.USER);
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return (List<User>) userRepository.findAll();
-    }
-
-    @RequestMapping(value = "users/{id}", method = RequestMethod.GET)
-    public User getUser(@PathVariable Long id) {
-        return userRepository.getOne(id);
-    }
-
-    @PostMapping("/users")
-    @ResponseStatus(HttpStatus.OK)
-    public void addUser(@RequestBody User user) {
-        userRepository.save(user);
-    }
-
-    @DeleteMapping(value = "users/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userRepository.deleteById(id);
+    @GetMapping("/api/user/login")
+    public ResponseEntity<?> login(Principal principal){
+        if(principal == null){
+            //This should be ok http status because this will be used for logout path.
+            return ResponseEntity.ok(principal);
+        }
+        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
+        User user = userService.findByUsername(authenticationToken.getName());
+        user.setToken(jwtTokenProvider.generateToken(authenticationToken));
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

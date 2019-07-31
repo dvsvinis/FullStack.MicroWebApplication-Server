@@ -12,8 +12,8 @@ import java.io.File;
 
 public class S3StorageService {
 
-    private final static String AKID = "AKIA2PM3FS2TE6T74PSQ";
-    private final static String SAK = "9qUFRpMN0BxDfk1jXi7RcY1kLjeWx3aePxgM0CON";
+    private final static String AKID = "access_key";
+    private final static String SAK = "secret_key";
     private final static String bucketName = "showboatvideos";
 
     public static String upload(File file) {

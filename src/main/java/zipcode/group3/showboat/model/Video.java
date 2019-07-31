@@ -19,6 +19,8 @@ public class Video {
     private LocalDate datecreated;
     private String description;
 
+    private Long userId;
+
 //    @Transient
 //    private transient MultipartFile file;
 
