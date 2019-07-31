@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import zipcode.group3.showboat.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtTokenProvider tokenProvider;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -37,10 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .authorizeRequests()
                 //These are public pages.
-                .antMatchers("/resources/**", "/error", "/api/user/**", "api/video/**", "/comments/**").permitAll()
+                .antMatchers("/resources/**", "/error", "/api/user/**", "/api/video/**", "/comments/**", "/").permitAll()
                 //These can be reachable for just have admin role.
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 //all remaining paths should need authentication.
+                .antMatchers("/auth/**").authenticated()
                 .anyRequest().fullyAuthenticated()
                 .and()
                 //logout will log the user out by invalidate session.

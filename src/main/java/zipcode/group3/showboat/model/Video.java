@@ -1,8 +1,10 @@
 package zipcode.group3.showboat.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Video {
@@ -10,21 +12,26 @@ public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String title;
     private String filepath;
-    private String datecreated;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate datecreated;
     private String description;
-    @Transient
-    private transient MultipartFile file;
+
+    private Long userId;
+
+//    @Transient
+//    private transient MultipartFile file;
 
     public Video() { }
 
-    public Video(String name, String filepath, String datecreated, String description, MultipartFile file) {
-        this.name = name;
+    public Video(String title, String filepath, LocalDate datecreated, String description, MultipartFile file) {
+        this.title = title;
         this.filepath = filepath;
         this.datecreated = datecreated;
         this.description = description;
-        this.file = file;
+//        this.file = file;
     }
 
     public Long getId() {
@@ -35,12 +42,12 @@ public class Video {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String name) {
+        this.title = name;
     }
 
     public String getFilepath() {
@@ -51,11 +58,11 @@ public class Video {
         this.filepath = filepath;
     }
 
-    public String getDatecreated() {
+    public LocalDate getDatecreated() {
         return datecreated;
     }
 
-    public void setDatecreated(String datecreated) {
+    public void setDatecreated(LocalDate datecreated) {
         this.datecreated = datecreated;
     }
 
@@ -67,21 +74,21 @@ public class Video {
         this.description = description;
     }
 
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
+//    public MultipartFile getFile() {
+//        return file;
+//    }
+//
+//    public void setFile(MultipartFile file) {
+//        this.file = file;
+//    }
 
     @Override
     public String toString() {
         return "Video{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + title + '\'' +
                 ", filepath='" + filepath + '\'' +
-                ", datecreated='" + datecreated + '\'' +
+                ", datecreated='" + datecreated.toString() + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
