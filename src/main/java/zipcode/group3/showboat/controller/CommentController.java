@@ -2,6 +2,7 @@ package zipcode.group3.showboat.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zipcode.group3.showboat.model.Comment;
 import zipcode.group3.showboat.repository.CommentRepository;
@@ -31,8 +32,14 @@ public class CommentController {
 
     @PostMapping("/comments")
     @ResponseStatus(HttpStatus.OK)
-    public void addComment(@RequestBody Comment comment) {
-        commentRepository.save(comment);
+    public ResponseEntity<Comment> addComment(@RequestBody Comment comment) {
+
+        return new ResponseEntity<>(commentRepository.save(comment),HttpStatus.CREATED);
+    }
+
+    @GetMapping("/comments/video/{videoid}")
+    public ResponseEntity<List<Comment>> listcomments(@PathVariable Long videoid) {
+        return new ResponseEntity<>(commentRepository.findByVideoid(videoid),HttpStatus.OK);
     }
 
 
