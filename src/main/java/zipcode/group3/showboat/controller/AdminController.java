@@ -1,11 +1,12 @@
 package zipcode.group3.showboat.controller;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import zipcode.group3.showboat.model.Comment;
 import zipcode.group3.showboat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AdminController {
@@ -17,4 +18,8 @@ public class AdminController {
     public ResponseEntity<?> findAllUsers(){
         return ResponseEntity.ok(userService.findAllUsers());
     }
+
+
+
+
 }
