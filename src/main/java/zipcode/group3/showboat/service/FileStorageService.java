@@ -28,7 +28,9 @@ public class FileStorageService {
         fos.write(multipartFile.getBytes());
         fos.close();
 
-        return S3StorageService.upload(file);
+        String filename = S3StorageService.upload(file);
+        file.delete();
+        return filename;
 
     }
 
