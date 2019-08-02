@@ -8,6 +8,7 @@ import zipcode.group3.showboat.model.Comment;
 import zipcode.group3.showboat.model.Video;
 import zipcode.group3.showboat.repository.CommentRepository;
 import zipcode.group3.showboat.repository.VideoRepository;
+import zipcode.group3.showboat.service.CommentService;
 
 import java.util.List;
 
@@ -17,11 +18,13 @@ public class CommentController {
 
     private CommentRepository commentRepository;
     private VideoRepository videoRepository;
+    private CommentService commentService;
 
     @Autowired
-    public CommentController(CommentRepository commentRepository, VideoRepository videoRepository) {
+    public CommentController(CommentRepository commentRepository, VideoRepository videoRepository, CommentService commentService) {
         this.commentRepository = commentRepository;
         this.videoRepository = videoRepository;
+        this.commentService = commentService;
     }
 
     @GetMapping("/comments")
@@ -38,11 +41,7 @@ public class CommentController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Comment> addComment(@RequestBody Comment comment, @PathVariable Long videoid) {
 
-        //Get the video
-        Video video = videoRepository.findById(videoid).get();
-        comment.setVideo(video);
-        return new ResponseEntity<>(commentRepository.save(comment),HttpStatus.CREATED);
-//        return new ResponseEntity<>(commentService.create(comment, videoid), HttpStatus.CREATED)
+        return new ResponseEntity<>(commentService.addComment(comment, videoid), HttpStatus.CREATED);
     }
 
     @GetMapping("/comments/video/{videoid}")
