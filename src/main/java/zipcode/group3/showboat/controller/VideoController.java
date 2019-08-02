@@ -15,9 +15,10 @@ import java.util.List;
 @RequestMapping("/api/video")
 public class VideoController {
 
+    @Autowired
     private VideoService service;
 
-    @Autowired
+
     public VideoController(VideoService service) {
         this.service = service;
     }
