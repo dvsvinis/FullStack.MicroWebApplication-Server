@@ -26,7 +26,7 @@ public class VideoController {
     /**
      * returns a list of videos
      */
-    @GetMapping("/videos")
+    @GetMapping
     public ResponseEntity<List<Video>> index() {
         return new ResponseEntity<>(service.readAll(), HttpStatus.OK);
     }
