@@ -5,12 +5,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class Video {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="videoid")
     private Long id;
     private String title;
     private String filepath;
@@ -20,6 +22,9 @@ public class Video {
     private String description;
 
     private Long userId;
+
+    @OneToMany
+    private Set<Comment> comment;
 
 //    @Transient
 //    private transient MultipartFile file;
