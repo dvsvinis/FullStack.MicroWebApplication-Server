@@ -79,7 +79,15 @@ public class Video {
         this.description = description;
     }
 
-//    public MultipartFile getFile() {
+    public Set<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(Set<Comment> comment) {
+        this.comment = comment;
+    }
+
+    //    public MultipartFile getFile() {
 //        return file;
 //    }
 //
