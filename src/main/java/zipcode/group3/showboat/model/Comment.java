@@ -23,6 +23,7 @@ public class Comment {
 
     @ManyToOne//(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name="videoid",nullable=false)
+    @JsonIgnoreProperties("comments")
     private Video video;
 
 
