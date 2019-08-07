@@ -1,8 +1,10 @@
 package zipcode.group3.showboat.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -11,6 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name= "comments")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Comment {
 
     @Id
@@ -18,8 +21,9 @@ public class Comment {
     private Long id;
     private String comment;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne//(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name="videoid",nullable=false)
+    @JsonIgnoreProperties("comments")
     private Video video;
 
 

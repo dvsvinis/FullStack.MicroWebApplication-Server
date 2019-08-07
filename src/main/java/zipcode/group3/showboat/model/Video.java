@@ -1,6 +1,9 @@
 package zipcode.group3.showboat.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -8,6 +11,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Video {
 
     @Id
@@ -23,8 +27,9 @@ public class Video {
 
     private Long userId;
 
-    @OneToMany
-    private Set<Comment> comment;
+    @OneToMany(mappedBy = "video")
+    @JsonIgnoreProperties("video")
+    private Set<Comment> comments;
 
 //    @Transient
 //    private transient MultipartFile file;
@@ -79,7 +84,15 @@ public class Video {
         this.description = description;
     }
 
-//    public MultipartFile getFile() {
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComment(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    //    public MultipartFile getFile() {
 //        return file;
 //    }
 //

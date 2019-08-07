@@ -12,11 +12,13 @@ import java.io.File;
 
 public class S3StorageService {
 
-    private final static String AKID = "";
-    private final static String SAK = "";
+    private final static String AKID = System.getenv("AWS_ACCESS_KEY_ID");
+    private final static String SAK = System.getenv("AWS_SECRET_ACCESS_KEY_ID");
+
     private final static String bucketName = "showboatvideos";
 
     public static String upload(File file) {
+        System.out.print(AKID);
         PutObjectRequest request = new PutObjectRequest(bucketName, file.getName(), file);
         AmazonS3 s3client = getS3();
         s3client.putObject(request);
